@@ -2,6 +2,11 @@
 
 Exact replica of [Neha Book Publication | Work From Home Handwriting Job](https://www.nehabookpublication.in/).
 
+## 🌐 Live Website (GitHub Pages)
+- **Live Homepage:** [https://ramsanwasa07.github.io/neha-book-publication/](https://ramsanwasa07.github.io/neha-book-publication/)
+- **Live Admin Panel:** [https://ramsanwasa07.github.io/neha-book-publication/admin.html](https://ramsanwasa07.github.io/neha-book-publication/admin.html)
+- **GitHub Repository:** [https://github.com/ramsanwasa07/neha-book-publication](https://github.com/ramsanwasa07/neha-book-publication)
+
 ## 📁 Project Structure
 
 ```
