@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Neha Book Publication</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="./supabase-client.js"></script>
+</head>
+<body style="background:#f4f4f4;">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="admin-login-box">
+        <h2>Admin Login</h2>
+        <div id="loginMsg"></div>
+        <div class="admin-field">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="admin@nehabookpublication.in">
+        </div>
+        <div class="admin-field">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+        <button class="admin-btn" id="loginBtn" style="width:100%;">Login</button>
+        <p style="text-align: center; margin-top: 15px;">
+            <a href="./index.html" style="color: #1E3A5F; font-size: 13px; text-decoration: none;">← Back to Website</a>
+        </p>
+    </div>
+
+    <!-- ADMIN DASHBOARD (hidden until logged in) -->
+    <div id="dashboard" class="admin-wrap" style="display:none;">
+        <div class="admin-topbar">
+            <h2>Neha Book Publication — Admin Panel</h2>
+            <div>
+                <a href="./index.html" class="admin-btn secondary" style="margin-right:8px; text-decoration:none;">View Site</a>
+                <button class="admin-btn secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+
+        <div id="dashMsg"></div>
+
+        <!-- SITE SETTINGS -->
+        <div class="admin-card">
+            <h3>Contact & Links</h3>
+            <div class="admin-field">
+                <label>WhatsApp Number (only digits with country code, e.g. 919785894756)</label>
+                <input type="text" id="settingsWhatsapp">
+            </div>
+            <div class="admin-field">
+                <label>Telegram Channel Link</label>
+                <input type="text" id="settingsTelegram">
+            </div>
+            <div class="admin-field">
+                <label>WhatsApp Group Link (leave empty to hide the group card on the site)</label>
+                <input type="text" id="settingsWaGroup">
+            </div>
+            <div class="admin-field">
+                <label>Apply Message (pre-filled WhatsApp text when someone taps "Apply Now")</label>
+                <input type="text" id="settingsApply">
+            </div>
+            <button class="admin-btn" id="saveSettingsBtn">Save Changes</button>
+        </div>
+
+        <!-- PROJECT PLANS -->
+        <div class="admin-card">
+            <h3>Writing Project Plans</h3>
+            <div id="plansContainer"></div>
+            <button class="admin-btn" id="addPlanBtn">+ Add New Plan</button>
+        </div>
+    </div>
+
+    <script src="./admin.js"></script>
+</body>
+</html>

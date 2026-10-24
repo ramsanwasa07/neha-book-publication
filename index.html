@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neha Book Publication | Work From Home Handwriting Job</title>
+
+    <meta name="description"
+        content="Join Neha Book Publication and earn from home through handwriting jobs. Flexible working hours, advance salary, and beginner-friendly opportunities.">
+    <meta name="keywords"
+        content="Handwriting Job, Work From Home, Neha Book Publication, Online Job, Part Time Job">
+    <meta name="author" content="Neha Book Publication">
+    <link rel="canonical" href="https://www.nehabookpublication.in/">
+
+    <!-- Open Graph / Social Share -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Neha Book Publication | Work From Home Handwriting Job">
+    <meta property="og:description"
+        content="Earn from home through handwriting jobs with Neha Book Publication. Flexible hours, advance salary, beginner friendly.">
+    <meta property="og:url" content="https://www.nehabookpublication.in/">
+    <meta property="og:image" content="./logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Neha Book Publication",
+      "url": "https://www.nehabookpublication.in/",
+      "description": "Work from home handwriting job opportunities for women across India."
+    }
+    </script>
+
+    <!-- Supabase JS Client for dynamic site settings and project plans -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="./supabase-client.js"></script>
+</head>
+
+<body>
+
+    <!-- FRAUD ALERT POPUP MODAL -->
+    <div id="fraudPopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="fraudPopupTitle">
+        <div class="popup-container">
+            <button class="popup-close" onclick="closePopup()" aria-label="Close modal">❌</button>
+
+            <div class="language-switcher">
+                <button id="englishBtn" class="active" type="button">English</button>
+                <button id="hindiBtn" type="button">हिन्दी</button>
+            </div>
+
+            <!-- English Content -->
+            <div id="englishContent">
+                <h2 id="fraudPopupTitle">⚠️ IMPORTANT FRAUD ALERT</h2>
+                <p>
+                    Neha Book Publication does not have any official Instagram or Facebook page/account.
+                </p>
+                <p>
+                    If you receive any registration, payment, or joining message in the name of Neha Book Publication through Instagram, Facebook, Telegram, or any other platform, please do not trust it. Such accounts and messages may be fraudulent.
+                </p>
+                <p>
+                    ✅ <strong>Official Telegram Channel:</strong><br>
+                    <span class="js-tg-handle-text">t.me/Nehabookpublication02</span>
+                </p>
+                <p>
+                    Please note: We only share work samples, updates, and customer reviews on our Telegram channel. We never send personal registration messages through Telegram.
+                </p>
+                <p>
+                    ✅ <strong>Official WhatsApp Number:</strong><br>
+                    <span class="js-wa-number-text">+91 97858 94756</span>
+                </p>
+                <p>
+                    Registration and official communication are conducted only through this WhatsApp number.
+                </p>
+                <p>
+                    ✅ <strong>Official Website:</strong><br>
+                    www.nehabookpublication.in
+                </p>
+                <p>
+                    Please verify the WhatsApp number mentioned on the website before trusting any link.
+                </p>
+                <p>
+                    ❌ Any payment or registration made through any other WhatsApp number, Instagram page, Facebook page, or website will be entirely at your own risk.
+                </p>
+                <p>
+                    If you find any fake page, fake website, or fraudulent message, immediately file a complaint on the Cyber Crime Portal and report the respective WhatsApp number, bank account, and social media account.
+                </p>
+                <p>
+                    For genuine information and services, please visit our official website.
+                </p>
+            </div>
+
+            <!-- Hindi Content -->
+            <div id="hindiContent" style="display: none;">
+                <h2>⚠️ महत्वपूर्ण धोखाधड़ी चेतावनी</h2>
+                <p>
+                    Neha Book Publication का Instagram या Facebook पर कोई आधिकारिक पेज/अकाउंट नहीं है।
+                </p>
+                <p>
+                    यदि आपको Instagram, Facebook, Telegram या किसी अन्य माध्यम से Neha Book Publication के नाम पर रजिस्ट्रेशन, भुगतान या जॉइनिंग का संदेश प्राप्त होता है, तो कृपया उस पर विश्वास न करें। ऐसे संदेश और अकाउंट धोखाधड़ी हो सकते हैं।
+                </p>
+                <p>
+                    ✅ <strong>आधिकारिक Telegram चैनल:</strong><br>
+                    <span class="js-tg-handle-text">t.me/Nehabookpublication02</span>
+                </p>
+                <p>
+                    कृपया ध्यान दें: Telegram चैनल पर केवल कार्य के नमूने, अपडेट और ग्राहक समीक्षा साझा की जाती हैं। Telegram के माध्यम से व्यक्तिगत रजिस्ट्रेशन संदेश नहीं भेजे जाते।
+                </p>
+                <p>
+                    ✅ <strong>आधिकारिक WhatsApp नंबर:</strong><br>
+                    <span class="js-wa-number-text">+91 97858 94756</span>
+                </p>
+                <p>
+                    रजिस्ट्रेशन और आधिकारिक संवाद केवल इसी WhatsApp नंबर के माध्यम से किए जाते हैं।
+                </p>
+                <p>
+                    ✅ <strong>आधिकारिक वेबसाइट:</strong><br>
+                    www.nehabookpublication.in
+                </p>
+                <p>
+                    किसी भी लिंक पर विश्वास करने से पहले वेबसाइट पर दिए गए WhatsApp नंबर की पुष्टि अवश्य करें।
+                </p>
+                <p>
+                    ❌ किसी अन्य WhatsApp नंबर, Instagram पेज, Facebook पेज या वेबसाइट के माध्यम से किया गया भुगतान या रजिस्ट्रेशन आपकी स्वयं की जिम्मेदारी होगी।
+                </p>
+                <p>
+                    यदि आपको कोई फर्जी पेज, फर्जी वेबसाइट या धोखाधड़ी वाला संदेश मिले, तो तुरंत Cyber Crime Portal पर शिकायत दर्ज करें और संबंधित WhatsApp नंबर, बैंक खाते एवं सोशल मीडिया अकाउंट की रिपोर्ट करें।
+                </p>
+                <p>
+                    सही जानकारी और सेवाओं के लिए कृपया हमारी आधिकारिक वेबसाइट पर ही जाएं।
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#home" class="company-name">
+                <img src="./favicon.png" alt="Neha Book Publication" class="navbar-logo">
+                <span>Neha Book Publication</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                ☰
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#how-it-works">How it Works</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN WRAPPER -->
+    <main id="home">
+        <!-- HERO IMAGE SECTION -->
+        <section class="hero">
+            <img src="./hero-banner.jpg"
+                onerror="this.onerror=null; this.src='https://i.ibb.co/R4DcnpsV/maxresdefault.jpg';"
+                alt="Handwriting Jobs From Home - Earn ₹25,000 monthly"
+                class="hero-image">
+        </section>
+
+        <!-- HERO TEXT SECTION -->
+        <section class="hero-text-section">
+            <div class="hero-text-content">
+                <h1>Work From Home</h1>
+                <h2>Writing Job Opportunity</h2>
+                <p>
+                    Earn ₹25000 per month by writing Nobel Book on A4 size sheet page with your beautiful handwriting.
+                </p>
+            </div>
+        </section>
+
+        <!-- BENEFITS SECTION -->
+        <section class="benefits">
+            <div class="benefits-container">
+                <div class="benefit-box">
+                    <h3>Flexible Working Hours</h3>
+                </div>
+                <div class="benefit-box">
+                    <h3>50% Advance Salary</h3>
+                </div>
+                <div class="benefit-box">
+                    <h3>Beginner Friendly</h3>
+                </div>
+                <div class="benefit-box">
+                    <h3>Remote Work Opportunity</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERO BUTTONS -->
+        <div class="hero-buttons">
+            <a href="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="apply-btn js-apply-link">
+                Apply Now
+            </a>
+
+            <a href="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whatsapp-btn js-whatsapp-link">
+                WhatsApp Us
+            </a>
+        </div>
+
+        <!-- PROJECTS SECTION -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Writing Projects Plan</h2>
+                    <p>
+                        Choose the project plan that best suits your schedule and start your handwriting work from home journey.
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projectsGrid" data-default-apply-link="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project.">
+                    <!-- Populated dynamically by script.js with live database or reliable fallback -->
+                    <p class="projects-loading">Loading plans…</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS SECTION -->
+        <section class="how-it-works-section" id="how-it-works">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How It Works</h2>
+                    <p>
+                        Start your handwriting work-from-home journey in just a few simple steps.
+                    </p>
+                </div>
+
+                <!-- Steps Grid -->
+                <div class="steps-grid">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>APPLY</h3>
+                        <p>
+                            Choose your preferred project plan and complete the application process.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>WHATSAPP</h3>
+                        <p>
+                            Chat with our official WhatsApp Business account and receive the QR details.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>PAY FEE</h3>
+                        <p>
+                            Pay the project registration fee (refundable as per process) to proceed.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h3>GET APPROVED</h3>
+                        <p>
+                            We verify your application and approve your registration.
+                        </p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card">
+                        <div class="step-number">05</div>
+                        <h3>START EARNING</h3>
+                        <p>
+                            Receive advance salary and begin your handwriting project.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Why Women Trust Us -->
+                <div class="trust-section">
+                    <h2>Why 5000+ Women Trust Us?</h2>
+                    <div class="trust-grid">
+                        <div class="trust-card">
+                            <div class="trust-icon">🏛️</div>
+                            <h3>Govt Approved</h3>
+                            <p>MSME, ISO & Startup India certified platform.</p>
+                        </div>
+                        <div class="trust-card">
+                            <div class="trust-icon">💰</div>
+                            <h3>On-Time Payments</h3>
+                            <p>Advance salary + weekly payouts – never delayed.</p>
+                        </div>
+                        <div class="trust-card">
+                            <div class="trust-icon">📞</div>
+                            <h3>24/7 Support</h3>
+                            <p>Dedicated WhatsApp support for all writers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Us</h2>
+                    <p>
+                        Learn more about Neha Book Publication and our mission to empower women through genuine work-from-home opportunities.
+                    </p>
+                </div>
+
+                <div class="about-wrapper">
+                    <div class="about-content">
+                        <p>
+                            <strong>Neha Book Publication</strong> is a Government Approved
+                            (MSME, ISO 9001:2024, Startup India) platform dedicated to providing
+                            genuine work-from-home writing opportunities for women across India.
+                        </p>
+                        <p>
+                            We have successfully trained and employed over
+                            <strong>5,000 women writers</strong>, disbursed more than
+                            <strong>₹10 crore</strong> in earnings, and completed
+                            <strong>25,000+ writing projects</strong> for clients worldwide.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <div class="about-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            Empower women to achieve financial independence through flexible,
+                            well-paying writing work from home.
+                        </p>
+                    </div>
+
+                    <div class="vision-card">
+                        <div class="about-icon">👁️</div>
+                        <h3>Our Vision</h3>
+                        <p>
+                            To become India's most trusted platform for women seeking
+                            legitimate remote work opportunities.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏛️</div>
+                        <h3>Govt Approved</h3>
+                        <p>MSME, ISO & Startup India</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <h3>₹10Cr+</h3>
+                        <p>Paid to Writers</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">👩‍💼</div>
+                        <h3>5000+</h3>
+                        <p>Happy Women</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section class="reviews-section" id="reviews">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Customer Reviews</h2>
+                    <p>
+                        See what our users say about their experience with Neha Book Publication.
+                    </p>
+                </div>
+
+                <div class="reviews-grid">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">AR</div>
+                            <div>
+                                <h3>Ananya R.</h3>
+                                <span>Chennai</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The registration process was very smooth, and the support team guided me throughout the procedure."</p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">KS</div>
+                            <div>
+                                <h3>Keerthana S.</h3>
+                                <span>Coimbatore</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"I received clear instructions and found the entire process easy to understand."</p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">NP</div>
+                            <div>
+                                <h3>Niveditha P.</h3>
+                                <span>Bengaluru</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The team answered all my questions promptly and helped me get started without any confusion."</p>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">AK</div>
+                            <div>
+                                <h3>Aishwarya K.</h3>
+                                <span>Hyderabad</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The communication was professional, and the information provided was very helpful."</p>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">MT</div>
+                            <div>
+                                <h3>Meghana T.</h3>
+                                <span>Mysuru</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The training materials were easy to follow, and I appreciated the support offered."</p>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">DN</div>
+                            <div>
+                                <h3>Divya N.</h3>
+                                <span>Kochi</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"I had a positive experience with the support team. They responded quickly to my queries."</p>
+                    </div>
+
+                    <!-- Review 7 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">HV</div>
+                            <div>
+                                <h3>Harini V.</h3>
+                                <span>Madurai</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The website was user-friendly, and the entire process was well organized."</p>
+                    </div>
+
+                    <!-- Review 8 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">PM</div>
+                            <div>
+                                <h3>Pavithra M.</h3>
+                                <span>Salem</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Everything was explained clearly, making it easy for me to understand the requirements."</p>
+                    </div>
+
+                    <!-- Review 9 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">SL</div>
+                            <div>
+                                <h3>Sanjana L.</h3>
+                                <span>Vijayawada</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The customer service was responsive and addressed my concerns efficiently."</p>
+                    </div>
+
+                    <!-- Review 10 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">LA</div>
+                            <div>
+                                <h3>Lakshmi A.</h3>
+                                <span>Tirupati</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Overall, I had a satisfactory experience and appreciated the professional approach."</p>
+                    </div>
+
+                    <!-- Review 11 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">SC</div>
+                            <div>
+                                <h3>Shruthi C.</h3>
+                                <span>Mangalore</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The guidance provided was helpful, and the process was straightforward."</p>
+                    </div>
+
+                    <!-- Review 12 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">VD</div>
+                            <div>
+                                <h3>Vaishnavi D.</h3>
+                                <span>Thiruvananthapuram</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The registration and verification steps were simple and easy to complete."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Frequently Asked Questions (FAQ)</h2>
+                    <p>
+                        Find answers to the most common questions regarding Neha Book Publication.
+                    </p>
+                </div>
+
+                <div class="faq-container">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>1. What is the official WhatsApp number of Neha Book Publication?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Our official WhatsApp number is:
+                                <strong><span class="js-wa-number-text">+91 97858 94756</span></strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>2. Does Neha Book Publication have an official Instagram or Facebook account?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                No. We do not have any official Instagram or Facebook account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>3. What is the official Telegram channel?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Our official Telegram channel is:
+                                <strong><span class="js-tg-handle-text">t.me/Nehabookpublication02</span></strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>4. Do you accept registrations through Telegram?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                No. Our Telegram channel is only used to share work samples, updates, and customer reviews.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>5. How can I contact Neha Book Publication?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Please contact us only through our official website or our official WhatsApp number.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>6. Where can I find available projects?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                You can view all available projects in the Projects section of our website.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>7. How can I view complete project details?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Click on the Apply Now button under any project to proceed with the registration process.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>8. How will I receive project guidelines?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Project guidelines and instructions will be provided through our official communication channels.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>9. What should I do if I receive a message from another WhatsApp number?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Do not trust any number other than our official WhatsApp number. Always verify before responding.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 10 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>10. What should I do if I find a fake Instagram page, Facebook page, or WhatsApp account?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Please report it immediately and file a complaint with the Cyber Crime Department.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 11 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>11. What is the official website of Neha Book Publication?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                <strong>www.nehabookpublication.in</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 12 -->
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>12. How can I protect myself from scams?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Always verify information through our official website, official WhatsApp number, and official Telegram channel. Never trust unofficial social media accounts or unknown contact numbers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT US SECTION -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>
+                        For genuine information and official communication, please use the contact details below.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- WhatsApp -->
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <h3>WhatsApp Business</h3>
+                        <p><span class="js-wa-number-text">+91 97858 94756</span></p>
+                        <a href="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project." target="_blank" rel="noopener noreferrer" class="contact-btn js-whatsapp-link">
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Telegram Channel -->
+                    <div class="contact-card">
+                        <div class="contact-icon">✈️</div>
+                        <h3>Telegram Channel</h3>
+                        <p>Official Updates Channel</p>
+                        <a href="https://t.me/Nehabookpublication02" target="_blank" rel="noopener noreferrer" class="contact-btn js-telegram-link">
+                            Join Telegram
+                        </a>
+                    </div>
+
+                    <!-- WhatsApp Group (dynamic) -->
+                    <div class="contact-card" id="whatsappGroupCard" style="display:none;">
+                        <div class="contact-icon">📢</div>
+                        <h3>WhatsApp Group</h3>
+                        <p>Join our official group</p>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="contact-btn js-whatsapp-group-link">
+                            Join Group
+                        </a>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <div class="contact-card">
+                        <div class="contact-icon">📝</div>
+                        <h3>Registration Form</h3>
+                        <p>Apply for handwriting projects.</p>
+                        <a href="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project." target="_blank" rel="noopener noreferrer" class="contact-btn js-apply-link">
+                            Apply Now
+                        </a>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email Address</h3>
+                        <p>nehabookpublication.in@gmail.com</p>
+                        <a href="mailto:nehabookpublication.in@gmail.com" class="contact-btn">
+                            Send Email
+                        </a>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Office Address</h3>
+                        <p>
+                            1718, Block G 6, Nehru Place Road,<br>
+                            Nehru Place,<br>
+                            New Delhi, Delhi 110019, India
+                        </p>
+                        <a href="https://maps.google.com/?q=1718+Block+G+6+Nehru+Place+New+Delhi+110019" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                            View Location
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVACY POLICY SECTION -->
+        <section class="privacy-section" id="privacy-policy">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Privacy Policy</h2>
+                    <p>
+                        At Neha Book Publication, we value your privacy. This policy explains how we collect, use, and protect your personal information.
+                    </p>
+                </div>
+
+                <div class="privacy-wrapper">
+                    <div class="privacy-card">
+                        <h3>1. Information We Collect</h3>
+                        <ul>
+                            <li>Name, email, phone number, UPI ID, and address provided in the application form.</li>
+                            <li>Payment transaction details (UTR number) for verification purposes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h3>2. How We Use Your Information</h3>
+                        <ul>
+                            <li>To process your application and payments.</li>
+                            <li>To send advance salary to your UPI ID.</li>
+                            <li>To communicate regarding work assignments and project updates.</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h3>3. Data Sharing</h3>
+                        <p>We do NOT sell, rent, or share your personal data with any third party except as required by law.</p>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h3>4. Data Security</h3>
+                        <p>We implement reasonable security measures to protect your data from unauthorized access, misuse, or disclosure.</p>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h3>5. Your Rights</h3>
+                        <p>You may request deletion of your personal data by contacting us through our official communication channels.</p>
+                        <p>Email: <strong>nehabookpublication.in@gmail.com</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMS & CONDITIONS SECTION -->
+        <section class="terms-section" id="terms">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Terms & Conditions</h2>
+                    <p>
+                        Please read these terms carefully before applying for any project through Neha Book Publication.
+                    </p>
+                </div>
+
+                <div class="terms-wrapper">
+                    <div class="terms-card">
+                        <p>This is an independent platform and not related to any other publication.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>1. Eligibility</h3>
+                        <p>You must be at least 18 years old and a woman to apply for writing projects.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>2. Application Fee & Delivery Charge</h3>
+                        <p>
+                            The application fee (depends on the project) is non-refundable under any circumstances.
+                            Once paid, no refund will be issued.
+                        </p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>3. Work & Payment</h3>
+                        <p>
+                            Advance salary (depending on the selected project) is paid after completing
+                            the first milestone as per the selected plan.
+                        </p>
+                        <p>Total salary depends on successful project completion.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>4. Independent Contractor</h3>
+                        <p>You are an independent contractor and not an employee of Neha Book Publication.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>5. Code of Conduct</h3>
+                        <p>
+                            Plagiarism, fraudulent activities, submission of false information,
+                            or violation of these terms will lead to immediate termination
+                            without refund.
+                        </p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>6. Limitation of Liability</h3>
+                        <p>
+                            We shall not be liable for any indirect, incidental, or consequential
+                            damages arising from the use of our platform or services.
+                        </p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3>7. Governing Law</h3>
+                        <p>These terms are governed by Indian law.</p>
+                        <p>Any disputes arising from the use of this platform shall be subject to the jurisdiction of Delhi courts only.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-column">
+                    <img src="./logo.png" alt="Neha Book Publication Logo" class="footer-logo">
+                    <p>
+                        Neha Book Publication provides genuine work-from-home handwriting opportunities for women across India.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                        <li><a href="./admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+
+                <!-- Official Contact -->
+                <div class="footer-column">
+                    <h3>Official Contact</h3>
+                    <ul>
+                        <li>
+                            WhatsApp:<br>
+                            <span class="js-wa-number-text">+91 97858 94756</span>
+                        </li>
+                        <li>
+                            Telegram:<br>
+                            https://<span class="js-tg-handle-text">t.me/Nehabookpublication02</span>
+                        </li>
+                        <li>
+                            Email:<br>
+                            nehabookpublication.in@gmail.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="footer-bottom">
+                <p>© 2026 Neha Book Publication. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/919785894756?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20handwriting%20project."
+        class="whatsapp-float js-whatsapp-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with us on WhatsApp">
+        <img src="./whatsapp.png"
+            onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/733/733585.png';"
+            alt="WhatsApp">
+    </a>
+
+    <!-- SCRIPT -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
