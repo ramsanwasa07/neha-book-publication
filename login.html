@@ -184,8 +184,26 @@
                                 </div>
                             </div>
 
+                            <!-- 10-Minute Expiry Countdown Timer -->
+                            <div>
+                                <div class="qr-timer-badge" id="qrTimerBadge">
+                                    <span class="timer-icon">⏳</span>
+                                    <span class="timer-text">QR Scanner Valid For: <strong id="qrCountdown">10:00</strong></span>
+                                </div>
+                            </div>
+
                             <div class="qr-image-wrapper">
                                 <img src="./payment-qr.jpg" alt="Neha Book Publication Payment QR Code" class="payment-qr-image" id="paymentQrImg">
+                                
+                                <!-- Expired Overlay (Shown after 10 minutes) -->
+                                <div class="qr-expired-overlay" id="qrExpiredOverlay" style="display: none;">
+                                    <div class="expired-icon">⌛</div>
+                                    <div class="expired-title">QR Scanner Expired</div>
+                                    <p class="expired-desc">10 minute ki payment validity poori ho gayi hai.</p>
+                                    <button type="button" id="btnRefreshQr" class="btn-refresh-qr">
+                                        🔄 Refresh Scanner (New 10 Mins)
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="qr-apps-badge">
@@ -240,6 +258,12 @@
                         <a href="./index.html" class="btn-home-outline">
                             ← Return to Website
                         </a>
+
+                        <div style="text-align: center; margin-top: 14px;">
+                            <a href="javascript:void(0)" id="btnResetSession" style="color: #64748b; font-size: 0.85rem; text-decoration: underline;">
+                                Change mobile number / apply new candidate
+                            </a>
+                        </div>
                     </div>
                 </section>
 

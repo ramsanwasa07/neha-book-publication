@@ -599,7 +599,28 @@
     font-weight: 800;
 }
 
+.qr-timer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 4px 0 14px;
+}
+
+.qr-timer-badge strong {
+    font-size: 1.05rem;
+    font-family: monospace, inherit;
+    letter-spacing: 0.5px;
+}
+
 .qr-image-wrapper {
+    position: relative;
     width: 240px;
     height: 240px;
     margin: 0 auto 14px;
@@ -612,6 +633,57 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.qr-expired-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 5;
+    animation: authFadeIn 0.3s ease;
+}
+
+.expired-icon {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.expired-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #b91c1c;
+    margin-bottom: 4px;
+}
+
+.expired-desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-bottom: 12px;
+    line-height: 1.35;
+}
+
+.btn-refresh-qr {
+    background: #00b562;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 181, 98, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-refresh-qr:hover {
+    background: #009e54;
+    transform: translateY(-1px);
 }
 
 .payment-qr-image {

@@ -30,6 +30,11 @@
     let selectedProjectSalary = "₹25,000 Salary";
     let selectedProjectFee = "₹499";
 
+    // 10-Minute QR Scanner Session Variables
+    let qrTimerInterval = null;
+    const QR_EXPIRY_MINUTES = 10;
+    const QR_EXPIRY_MS = QR_EXPIRY_MINUTES * 60 * 1000;
+
     // DOM Elements
     const authNotice = document.getElementById("authNotice");
     const selectedProjectDisplay = document.getElementById("selectedProjectDisplay");
@@ -224,10 +229,87 @@
         }
     }
 
-    // Finalize Application and show Step 4
-    function finalizeApplication(userData) {
+    // 10-Minute QR Countdown Timer Function
+    function startQrTimer(expiresAt) {
+        if (qrTimerInterval) clearInterval(qrTimerInterval);
+
+        const qrCountdown = document.getElementById("qrCountdown");
+        const qrExpiredOverlay = document.getElementById("qrExpiredOverlay");
+        const qrTimerBadge = document.getElementById("qrTimerBadge");
+
+        function tick() {
+            const remainingMs = expiresAt - Date.now();
+            const remainingSecs = Math.max(0, Math.floor(remainingMs / 1000));
+
+            const mins = Math.floor(remainingSecs / 60);
+            const secs = remainingSecs % 60;
+            const display = String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+
+            if (qrCountdown) qrCountdown.textContent = display;
+
+            if (remainingSecs <= 0) {
+                clearInterval(qrTimerInterval);
+                if (qrExpiredOverlay) qrExpiredOverlay.style.display = "flex";
+                if (qrTimerBadge) {
+                    qrTimerBadge.style.background = "#fee2e2";
+                    qrTimerBadge.style.color = "#991b1b";
+                    qrTimerBadge.innerHTML = '<span class="timer-icon">⚠️</span> <span class="timer-text">QR Scanner Expired</span>';
+                }
+            } else {
+                if (qrExpiredOverlay) qrExpiredOverlay.style.display = "none";
+                if (qrTimerBadge) {
+                    qrTimerBadge.style.background = "#fef2f2";
+                    qrTimerBadge.style.color = "#b91c1c";
+                    qrTimerBadge.innerHTML = '<span class="timer-icon">⏳</span> <span class="timer-text">QR Scanner Valid For: <strong id="qrCountdown">' + display + '</strong></span>';
+                }
+            }
+        }
+
+        tick();
+        qrTimerInterval = setInterval(tick, 1000);
+    }
+
+    // Refresh / Renew Scanner for 10 minutes
+    function renewQrScanner(userData) {
+        const newExpiresAt = Date.now() + QR_EXPIRY_MS;
+        const currentData = userData || (function () {
+            try {
+                const s = localStorage.getItem("nbp_active_qr_session");
+                if (s) return JSON.parse(s).userData;
+            } catch (_) {}
+            return {};
+        })();
+
+        const session = {
+            userData: currentData,
+            expiresAt: newExpiresAt,
+            createdAt: Date.now()
+        };
+        localStorage.setItem("nbp_active_qr_session", JSON.stringify(session));
+        startQrTimer(newExpiresAt);
+        showMsg("QR Scanner refreshed! 10-minute validity started.", "success");
+    }
+
+    // Finalize Application and show Step 4 (Scanner Screen)
+    function finalizeApplication(userData, existingExpiresAt) {
         // Save current user session
         localStorage.setItem("nbp_current_user", JSON.stringify(userData));
+
+        // Manage 10-minute expiry
+        let expiresAt = existingExpiresAt;
+        const now = Date.now();
+        // If no expiry exists, or if expired and page was refreshed, generate fresh 10 mins!
+        if (!expiresAt || expiresAt <= now) {
+            expiresAt = now + QR_EXPIRY_MS;
+        }
+
+        // Save active session so on page refresh, scanner displays directly!
+        const activeSession = {
+            userData: userData,
+            expiresAt: expiresAt,
+            createdAt: now
+        };
+        localStorage.setItem("nbp_active_qr_session", JSON.stringify(activeSession));
 
         // Save into applications list for Admin Panel inspection
         try {
@@ -236,9 +318,14 @@
             if (stored) allApps = JSON.parse(stored);
             if (!Array.isArray(allApps)) allApps = [];
 
-            // Add new application to beginning
-            allApps.unshift(userData);
-            localStorage.setItem("nbp_candidate_applications", JSON.stringify(allApps));
+            // Prevent duplicate entries of same phone/time
+            const alreadyExists = allApps.some(function (a) {
+                return a.phone === userData.phone && a.applied_at === userData.applied_at;
+            });
+            if (!alreadyExists) {
+                allApps.unshift(userData);
+                localStorage.setItem("nbp_candidate_applications", JSON.stringify(allApps));
+            }
         } catch (_) {}
 
         // Populate Summary Card & QR Box
@@ -270,6 +357,10 @@
             btnWhatsAppDispatch.setAttribute("href", waLink);
         }
 
+        // Start 10-minute live countdown timer
+        startQrTimer(expiresAt);
+
+        // Display QR Scanner Screen
         showStep(stepDone);
     }
 
@@ -277,6 +368,57 @@
     document.addEventListener("DOMContentLoaded", function () {
         initProjectContext();
         setupOtpInputs();
+
+        // Check if an active confirmed QR scanner session already exists in browser
+        // (So refreshing the page directly shows the scanner!)
+        try {
+            const storedSession = localStorage.getItem("nbp_active_qr_session");
+            if (storedSession) {
+                const session = JSON.parse(storedSession);
+                if (session && session.userData && session.userData.phone) {
+                    // If URL explicitly selected a new plan, update project details
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get("badge") && urlParams.get("badge") !== session.userData.project) {
+                        session.userData.project = selectedProjectBadge;
+                        session.userData.salary = selectedProjectSalary;
+                        session.userData.fee = selectedProjectFee;
+                    }
+                    finalizeApplication(session.userData, session.expiresAt);
+                    // Attach scanner buttons
+                    attachScannerEvents();
+                    return;
+                }
+            }
+        } catch (_) {}
+
+        // Setup refresh scanner & reset buttons
+        function attachScannerEvents() {
+            const btnRefreshQr = document.getElementById("btnRefreshQr");
+            if (btnRefreshQr && !btnRefreshQr.dataset.bound) {
+                btnRefreshQr.dataset.bound = "true";
+                btnRefreshQr.addEventListener("click", function () {
+                    renewQrScanner();
+                });
+            }
+
+            const btnResetSession = document.getElementById("btnResetSession");
+            if (btnResetSession && !btnResetSession.dataset.bound) {
+                btnResetSession.dataset.bound = "true";
+                btnResetSession.addEventListener("click", function () {
+                    if (confirm("Do you want to clear this session and apply with a new mobile number or name?")) {
+                        localStorage.removeItem("nbp_active_qr_session");
+                        if (qrTimerInterval) clearInterval(qrTimerInterval);
+                        showStep(stepPhone);
+                        if (mobileInput) {
+                            mobileInput.value = "";
+                            mobileInput.focus();
+                        }
+                    }
+                });
+            }
+        }
+
+        attachScannerEvents();
 
         // 1. Submit Phone Number
         const phoneForm = document.getElementById("phoneForm");
@@ -360,6 +502,7 @@
                         existingUser.salary = selectedProjectSalary;
                         existingUser.fee = selectedProjectFee;
                         finalizeApplication(existingUser);
+                        attachScannerEvents();
                     } else {
                         // Ask for candidate name
                         setTimeout(function () {
@@ -410,6 +553,7 @@
 
                 setTimeout(function () {
                     finalizeApplication(candidateData);
+                    attachScannerEvents();
                 }, 600);
             });
         }
