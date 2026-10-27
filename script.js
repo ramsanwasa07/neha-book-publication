@@ -243,10 +243,10 @@ function renderProjectPlans(plans, waDigits) {
 
     grid.innerHTML = plans.map(function (plan) {
         const featuredClass = plan.is_featured ? " featured-plan" : "";
-        const planMessage = "Hi, I want to apply for " + (plan.badge || "this plan") + " - " + (plan.salary_amount || "") + ".";
-        const applyLink = waDigits
-            ? "https://wa.me/" + waDigits + "?text=" + encodeURIComponent(planMessage)
-            : (plan.apply_link || defaultApplyLink);
+        const badgeSlug = encodeURIComponent((plan.badge || "project").toLowerCase().replace(/\s+/g, "-"));
+        const badgeText = encodeURIComponent(plan.badge || "");
+        const salaryText = encodeURIComponent(plan.salary_amount || "");
+        const applyLink = "./login.html?project=" + badgeSlug + "&badge=" + badgeText + "&salary=" + salaryText;
 
         return (
             '<div class="project-card' + featuredClass + '">' +
@@ -258,7 +258,7 @@ function renderProjectPlans(plans, waDigits) {
                     (plan.writing_side ? '<li>➡️ ' + escapeHtml(plan.writing_side) + '</li>' : '') +
                     (plan.registration_fee ? '<li>💳 ' + escapeHtml(plan.registration_fee) + '</li>' : '') +
                 '</ul>' +
-                '<a href="' + applyLink + '" target="_blank" rel="noopener noreferrer" class="project-btn js-apply-link">Apply Now</a>' +
+                '<a href="' + applyLink + '" class="project-btn js-apply-link">Apply Now</a>' +
             '</div>'
         );
     }).join("");
@@ -345,10 +345,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         window.__waDigitsForApply = waDigits;
         window.__waApplyMessage = defaultWaMessage;
 
-        const genericApplyLink = "https://wa.me/" + waDigits + "?text=" + encodeURIComponent(window.__waApplyMessage);
         document.querySelectorAll(".js-apply-link").forEach(function (el) {
-            el.setAttribute("href", genericApplyLink);
-            el.setAttribute("target", "_blank");
+            const currentHref = el.getAttribute("href") || "";
+            if (!currentHref.includes("login.html")) {
+                el.setAttribute("href", "./login.html?project=general");
+            }
+            el.removeAttribute("target");
         });
 
         // WhatsApp Group card

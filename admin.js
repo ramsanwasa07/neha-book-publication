@@ -25,6 +25,7 @@ async function checkSession() {
             dashboard.style.display = "block";
             loadSettings();
             loadPlans();
+            loadApplications();
         } else {
             loginScreen.style.display = "block";
             dashboard.style.display = "none";
@@ -269,6 +270,75 @@ if (addPlanBtn) {
         } else {
             showMsg(dashMsg, "New plan added — edit its details below.", "success");
             loadPlans();
+        }
+    });
+}
+
+/* ---------- CANDIDATE APPLICATIONS ---------- */
+
+function loadApplications() {
+    const container = document.getElementById("applicationsContainer");
+    if (!container) return;
+
+    let apps = [];
+    try {
+        const stored = localStorage.getItem("nbp_candidate_applications");
+        if (stored) apps = JSON.parse(stored);
+        if (!Array.isArray(apps)) apps = [];
+    } catch (_) {}
+
+    if (apps.length === 0) {
+        container.innerHTML = '<p style="color: #666; font-size: 14px; padding: 10px 0;">No candidate applications received yet.</p>';
+        return;
+    }
+
+    container.innerHTML =
+        '<div style="overflow-x: auto;">' +
+        '<table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">' +
+            '<thead>' +
+                '<tr style="background: #1E3A5F; color: #fff;">' +
+                    '<th style="padding: 10px 12px; border-radius: 6px 0 0 0;">Date</th>' +
+                    '<th style="padding: 10px 12px;">Candidate Name</th>' +
+                    '<th style="padding: 10px 12px;">Mobile</th>' +
+                    '<th style="padding: 10px 12px;">City</th>' +
+                    '<th style="padding: 10px 12px;">Project</th>' +
+                    '<th style="padding: 10px 12px;">Salary</th>' +
+                    '<th style="padding: 10px 12px; border-radius: 0 6px 0 0;">Action</th>' +
+                '</tr>' +
+            '</thead>' +
+            '<tbody>' +
+                apps.map(function (item, index) {
+                    const rowBg = index % 2 === 0 ? "#ffffff" : "#f9fbfd";
+                    const cleanPhone = (item.phone || "").replace(/[^0-9]/g, "");
+                    const waText = encodeURIComponent("Hi " + (item.name || "Candidate") + ", this is Neha Book Publication regarding your application for " + (item.project || "handwriting job") + ".");
+                    const waLink = "https://wa.me/91" + cleanPhone + "?text=" + waText;
+
+                    return (
+                        '<tr style="background: ' + rowBg + '; border-bottom: 1px solid #e5e7eb;">' +
+                            '<td style="padding: 10px 12px; color: #666; font-size: 13px;">' + (item.applied_at || "Recent") + '</td>' +
+                            '<td style="padding: 10px 12px; font-weight: 600; color: #1E3A5F;">' + (item.name || "-") + '</td>' +
+                            '<td style="padding: 10px 12px;">+91 ' + (item.phone || "-") + '</td>' +
+                            '<td style="padding: 10px 12px; color: #555;">' + (item.city || "-") + '</td>' +
+                            '<td style="padding: 10px 12px;"><span style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">' + (item.project || "-") + '</span></td>' +
+                            '<td style="padding: 10px 12px; font-weight: 600; color: #00b562;">' + (item.salary || "-") + '</td>' +
+                            '<td style="padding: 10px 12px;">' +
+                                '<a href="' + waLink + '" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #25D366; color: #fff; text-decoration: none; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;">WhatsApp</a>' +
+                            '</td>' +
+                        '</tr>'
+                    );
+                }).join("") +
+            '</tbody>' +
+        '</table>' +
+        '</div>';
+}
+
+const clearApplicationsBtn = document.getElementById("clearApplicationsBtn");
+if (clearApplicationsBtn) {
+    clearApplicationsBtn.addEventListener("click", function () {
+        if (confirm("Are you sure you want to clear all candidate application records?")) {
+            localStorage.removeItem("nbp_candidate_applications");
+            loadApplications();
+            showMsg(dashMsg, "Candidate applications cleared.", "success");
         }
     });
 }

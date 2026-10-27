@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Login / Create Account | Neha Book Publication</title>
+    <meta name="description"
+        content="Login or create your account to apply for handwriting work from home projects with Neha Book Publication.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="./favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./auth-ui.css">
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="./supabase-client.js"></script>
+</head>
+
+<body class="auth-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="auth-navbar">
+        <div class="auth-nav-container">
+            <a href="./index.html" class="auth-brand">
+                <img src="./favicon.png" alt="Neha Book Publication Logo">
+                <span>Neha Book Publication</span>
+            </a>
+            <a href="./index.html" class="auth-back-link">
+                <span>←</span> Back to Website
+            </a>
+        </div>
+    </header>
+
+    <!-- AUTH WRAPPER -->
+    <main class="auth-wrap">
+        <div class="auth-card">
+
+            <!-- Card Header (Navy Blue with NBP Badge) -->
+            <div class="otp-hero">
+                <div class="otp-hero-badge">NBP</div>
+                <div class="otp-hero-text">Work from home writing projects</div>
+            </div>
+
+            <div class="auth-body">
+
+                <!-- Project Context Notice (Shows when user tapped Apply Now on a plan) -->
+                <div id="authNotice" class="auth-notice">
+                    <div id="selectedProjectDisplay" style="display: none; margin-bottom: 6px;">
+                        <strong>Selected Project:</strong> <span id="projectNameText" class="project-pill">7 Day Project</span>
+                        <div id="projectSalaryText" style="font-size: 0.85rem; color: #1E3A5F; font-weight: 600; margin-top: 3px;">₹25,000 Salary</div>
+                    </div>
+                    <div>Verify your mobile number to continue with your project application.</div>
+                </div>
+
+                <!-- Alert Messages Container -->
+                <div id="authMsg" class="auth-msg"></div>
+
+                <!-- ==============================================
+                     STEP 1: Enter Mobile Number & Sign in with Phone
+                     ============================================== -->
+                <section id="stepPhone" class="auth-step">
+                    <h1 class="auth-title">Login or create account</h1>
+                    <p class="auth-sub">
+                        Enter your mobile number, then the OTP we send you by SMS. New here? We will set up your account in a few seconds.
+                    </p>
+
+                    <form id="phoneForm" onsubmit="return false;" novalidate>
+                        <div class="phone-field-wrap">
+                            <label for="mobileNumberInput" class="phone-field-label">Mobile Number</label>
+                            <div class="phone-input-group">
+                                <span class="phone-prefix">🇮🇳 +91</span>
+                                <input type="tel" id="mobileNumberInput" placeholder="Enter 10-digit mobile number"
+                                    maxlength="10" inputmode="numeric" pattern="[0-9]{10}" autocomplete="tel" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnSignInPhone" class="btn-sign-phone">
+                            <span class="phone-icon">📞</span>
+                            <span>Sign in With Phone</span>
+                        </button>
+                    </form>
+
+                    <p class="otp-terms">
+                        By continuing, you agree to our <a href="./index.html#faq">Terms</a> &amp; <a href="./index.html#about">Privacy Policy</a>.
+                    </p>
+                </section>
+
+                <!-- ==============================================
+                     STEP 2: Enter OTP Verification Code
+                     ============================================== -->
+                <section id="stepOtp" class="auth-step" style="display: none;">
+                    <h1 class="auth-title">Enter Verification Code</h1>
+                    <p class="auth-sub">
+                        We have sent an SMS OTP to <strong id="userPhoneDisplay">+91 ----------</strong>
+                        <a href="javascript:void(0)" id="btnChangePhone" class="otp-change-link">Change</a>
+                    </p>
+
+                    <!-- Demo / Auto-fill Helper Hint -->
+                    <div class="otp-demo-hint">
+                        📲 SMS sent! <span id="demoOtpBadge">Your OTP is: <strong>1234</strong></span>
+                        (<strong id="btnAutoFillOtp">Click to Auto-fill</strong>)
+                    </div>
+
+                    <form id="otpForm" onsubmit="return false;" novalidate>
+                        <div class="otp-inputs-row">
+                            <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*" autofocus>
+                            <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+                            <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+                            <input type="text" class="otp-digit" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+                        </div>
+
+                        <div class="otp-resend-row">
+                            <span>Didn't get the code?</span>
+                            <span id="resendTimerText">Resend in <strong id="countdownSecs">30</strong>s</span>
+                            <a href="javascript:void(0)" id="btnResendOtp" class="otp-resend-link" style="display: none;">Resend OTP</a>
+                        </div>
+
+                        <button type="submit" id="btnVerifyOtp" class="btn-sign-phone">
+                            Verify &amp; Continue
+                        </button>
+                    </form>
+                </section>
+
+                <!-- ==============================================
+                     STEP 3: What's your name? (Candidate Details)
+                     ============================================== -->
+                <section id="stepName" class="auth-step" style="display: none;">
+                    <h1 class="auth-title">What's your name?</h1>
+                    <p class="auth-sub">
+                        Mobile number verified: <strong id="verifiedPhoneDisplay">+91 ----------</strong>
+                    </p>
+
+                    <form id="nameForm" onsubmit="return false;" novalidate>
+                        <div class="auth-field">
+                            <label for="fullNameInput">Enter Full Name *</label>
+                            <input type="text" id="fullNameInput" placeholder="Your full name" autocomplete="name" required>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="cityInput">City / State (for book parcel delivery)</label>
+                            <input type="text" id="cityInput" placeholder="e.g. Jaipur, Rajasthan">
+                        </div>
+
+                        <details class="auth-ref-details">
+                            <summary>Have a referral code?</summary>
+                            <div class="auth-field" style="margin-top: 10px;">
+                                <input type="text" id="referralInput" placeholder="Enter referral code (optional)">
+                            </div>
+                        </details>
+
+                        <button type="submit" id="btnSubmitName" class="btn-sign-phone">
+                            Confirm &amp; Proceed to Project
+                        </button>
+                    </form>
+                </section>
+
+                <!-- ==============================================
+                     STEP 4: Application Submitted / You're in!
+                     ============================================== -->
+                <section id="stepDone" class="auth-step" style="display: none;">
+                    <div class="auth-success-box">
+                        <div class="success-icon-badge">✓</div>
+                        <h1 class="auth-title">You're in! 🎉</h1>
+                        <p class="auth-sub">Your project registration is confirmed with Neha Book Publication.</p>
+
+                        <!-- Summary Card -->
+                        <div class="application-summary-card">
+                            <div class="summary-row">
+                                <span class="summary-label">Applicant Name:</span>
+                                <span class="summary-val" id="summaryName">-</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Mobile Number:</span>
+                                <span class="summary-val" id="summaryPhone">-</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Selected Project:</span>
+                                <span class="summary-val" id="summaryProject">7 Day Project</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Expected Salary:</span>
+                                <span class="summary-val" id="summarySalary" style="color: #00b562;">₹25,000</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Application Status:</span>
+                                <span class="summary-val" style="color: #0284c7;">✓ Verified Candidate</span>
+                            </div>
+                        </div>
+
+                        <a href="#" id="btnWhatsAppDispatch" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-chat">
+                            <span>💬</span>
+                            <span>Chat on WhatsApp for Material Dispatch</span>
+                        </a>
+
+                        <a href="./index.html" class="btn-home-outline">
+                            ← Return to Website
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Logic for Login & OTP Flow -->
+    <script src="./login.js"></script>
+</body>
+
+</html>

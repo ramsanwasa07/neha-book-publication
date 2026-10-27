@@ -1,0 +1,581 @@
+/* ============================================================
+   AUTH UI — Login / Sign In / Create Account
+   Neha Book Publication Brand Styling (Navy Blue #1E3A5F + Gold #D4A034 + Green #00b562)
+   Matches official candidate project login portal design
+   ============================================================ */
+
+.auth-page {
+    background: #edf1f7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: #12284C;
+}
+
+/* Top Navbar for Auth Page */
+.auth-navbar {
+    background: #1E3A5F;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.auth-nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.auth-brand img {
+    height: 38px;
+    width: 38px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+    padding: 2px;
+}
+
+.auth-back-link {
+    color: #e1e7f0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.auth-back-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* Main Container */
+.auth-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 36px 16px 60px;
+}
+
+/* Auth Card */
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 18px 50px rgba(18, 40, 76, 0.12);
+    overflow: hidden;
+    position: relative;
+    animation: authFadeIn 0.35s ease-out;
+}
+
+@keyframes authFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Header Banner (Dark Navy with Badge) */
+.otp-hero {
+    background: linear-gradient(135deg, #1E3A5F 0%, #152d4c 100%);
+    color: #ffffff;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.otp-hero-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #D4A034;
+    color: #12284C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.15rem;
+    flex: 0 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.otp-hero-text {
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
+/* Card Content Area */
+.auth-body {
+    padding: 24px 26px 30px;
+}
+
+/* Selected Project Context Box */
+.auth-notice {
+    background: #fff9e6;
+    border: 1px solid #f6db8f;
+    color: #523f0a;
+    border-radius: 14px;
+    padding: 13px 16px;
+    margin-bottom: 22px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.auth-notice strong {
+    color: #1E3A5F;
+}
+
+.project-pill {
+    display: inline-block;
+    background: #1E3A5F;
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Auth Headings */
+.auth-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #12284C;
+    margin: 0 0 8px;
+    line-height: 1.25;
+}
+
+.auth-sub {
+    font-size: 0.93rem;
+    color: #5f6e86;
+    line-height: 1.55;
+    margin: 0 0 24px;
+}
+
+/* Phone Input Form */
+.phone-field-wrap {
+    margin-bottom: 20px;
+}
+
+.phone-field-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1E3A5F;
+    margin-bottom: 8px;
+}
+
+.phone-input-group {
+    display: flex;
+    align-items: stretch;
+    border-radius: 12px;
+    border: 2px solid #e1e7f0;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.phone-input-group:focus-within {
+    border-color: #00b562;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 181, 98, 0.15);
+}
+
+.phone-prefix {
+    background: #eef2f8;
+    color: #1E3A5F;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-right: 1px solid #e1e7f0;
+    user-select: none;
+}
+
+.phone-input-group input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 15px 16px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #12284C;
+    outline: none;
+    letter-spacing: 0.5px;
+}
+
+.phone-input-group input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+/* Green Phone Button (Screenshot match) */
+.btn-sign-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #00b562;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 181, 98, 0.28);
+    transition: all 0.2s ease;
+}
+
+.btn-sign-phone:hover {
+    background: #009e54;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(0, 181, 98, 0.35);
+}
+
+.btn-sign-phone:active {
+    transform: translateY(0);
+}
+
+.btn-sign-phone:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Terms Footer */
+.otp-terms {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin: 20px 0 0;
+}
+
+.otp-terms a {
+    color: #1E3A5F;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* OTP Step Boxes */
+.otp-inputs-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.otp-digit {
+    width: 54px;
+    height: 58px;
+    border-radius: 12px;
+    border: 2px solid #e1e7f0;
+    background: #f8fafc;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #12284C;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.otp-digit:focus {
+    border-color: #00b562;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 181, 98, 0.15);
+}
+
+/* Helper Demo Tag */
+.otp-demo-hint {
+    background: #f0fdf4;
+    border: 1px dashed #86efac;
+    color: #166534;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.86rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.otp-demo-hint strong {
+    color: #15803d;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.otp-resend-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 20px;
+    font-size: 0.88rem;
+    color: #64748b;
+}
+
+.otp-resend-link {
+    color: #1E3A5F;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.otp-resend-link:hover {
+    text-decoration: underline;
+}
+
+.otp-change-link {
+    color: #00b562;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+/* Input Fields for Step 2 (Name & Details) */
+.auth-field {
+    margin-bottom: 16px;
+}
+
+.auth-field label {
+    display: block;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #1E3A5F;
+    margin-bottom: 6px;
+}
+
+.auth-field input,
+.auth-field select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #e1e7f0;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    color: #12284C;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.auth-field input:focus,
+.auth-field select:focus {
+    border-color: #00b562;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 181, 98, 0.15);
+}
+
+.auth-ref-details {
+    margin: 8px 0 18px;
+}
+
+.auth-ref-details summary {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1E3A5F;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+/* Status / Alert Message */
+.auth-msg {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+    display: none;
+}
+
+.auth-msg.error {
+    display: block;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.auth-msg.success {
+    display: block;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+/* Success / Completion Card */
+.auth-success-box {
+    text-align: center;
+    padding: 10px 0 10px;
+}
+
+.success-icon-badge {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.2);
+}
+
+.application-summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+    text-align: left;
+    margin: 18px 0 24px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: #64748b;
+}
+
+.summary-val {
+    font-weight: 600;
+    color: #1E3A5F;
+}
+
+.btn-whatsapp-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #25D366;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-whatsapp-chat:hover {
+    background: #20bd5a;
+    transform: translateY(-1px);
+}
+
+.btn-home-outline {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+    border: 2px solid #1E3A5F;
+    border-radius: 10px;
+    color: #1E3A5F;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-home-outline:hover {
+    background: #1E3A5F;
+    color: #ffffff;
+}
+
+/* Navbar Login Button in Index.html */
+.nav-login-btn {
+    background: #00b562 !important;
+    color: #ffffff !important;
+    padding: 8px 18px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 4px 12px rgba(0, 181, 98, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-login-btn:hover {
+    background: #009e54 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .auth-card {
+        border-radius: 18px;
+    }
+    .otp-hero {
+        padding: 18px 18px;
+    }
+    .auth-body {
+        padding: 20px 18px 24px;
+    }
+    .auth-title {
+        font-size: 1.45rem;
+    }
+    .otp-inputs-row {
+        gap: 8px;
+    }
+    .otp-digit {
+        width: 46px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+}
