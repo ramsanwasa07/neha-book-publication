@@ -230,12 +230,17 @@
     }
 
     // 10-Minute QR Countdown Timer Function
-    function startQrTimer(expiresAt) {
-        if (qrTimerInterval) clearInterval(qrTimerInterval);
+    function startQrTimer(rawExpiresAt) {
+        if (qrTimerInterval) {
+            clearInterval(qrTimerInterval);
+            qrTimerInterval = null;
+        }
 
-        const qrCountdown = document.getElementById("qrCountdown");
-        const qrExpiredOverlay = document.getElementById("qrExpiredOverlay");
-        const qrTimerBadge = document.getElementById("qrTimerBadge");
+        let expiresAt = Number(rawExpiresAt);
+        const now = Date.now();
+        if (!expiresAt || isNaN(expiresAt) || expiresAt <= now) {
+            expiresAt = now + QR_EXPIRY_MS;
+        }
 
         function tick() {
             const remainingMs = expiresAt - Date.now();
@@ -243,25 +248,41 @@
 
             const mins = Math.floor(remainingSecs / 60);
             const secs = remainingSecs % 60;
-            const display = String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+            const display = (mins < 10 ? "0" : "") + mins + ":" + (secs < 10 ? "0" : "") + secs;
 
-            if (qrCountdown) qrCountdown.textContent = display;
+            const qrCountdown = document.getElementById("qrCountdown");
+            if (qrCountdown) {
+                qrCountdown.textContent = display;
+            }
+
+            const qrExpiredOverlay = document.getElementById("qrExpiredOverlay");
+            const qrTimerBadge = document.getElementById("qrTimerBadge");
+            const timerIcon = document.getElementById("timerIcon");
+            const timerText = document.getElementById("timerText");
 
             if (remainingSecs <= 0) {
-                clearInterval(qrTimerInterval);
+                if (qrTimerInterval) {
+                    clearInterval(qrTimerInterval);
+                    qrTimerInterval = null;
+                }
                 if (qrExpiredOverlay) qrExpiredOverlay.style.display = "flex";
                 if (qrTimerBadge) {
                     qrTimerBadge.style.background = "#fee2e2";
+                    qrTimerBadge.style.borderColor = "#fca5a5";
                     qrTimerBadge.style.color = "#991b1b";
-                    qrTimerBadge.innerHTML = '<span class="timer-icon">⚠️</span> <span class="timer-text">QR Scanner Expired</span>';
                 }
+                if (timerIcon) timerIcon.textContent = "⚠️";
+                if (timerText) timerText.textContent = "QR Scanner Expired";
+                if (qrCountdown) qrCountdown.textContent = " (00:00)";
             } else {
                 if (qrExpiredOverlay) qrExpiredOverlay.style.display = "none";
                 if (qrTimerBadge) {
                     qrTimerBadge.style.background = "#fef2f2";
+                    qrTimerBadge.style.borderColor = "#fecaca";
                     qrTimerBadge.style.color = "#b91c1c";
-                    qrTimerBadge.innerHTML = '<span class="timer-icon">⏳</span> <span class="timer-text">QR Scanner Valid For: <strong id="qrCountdown">' + display + '</strong></span>';
                 }
+                if (timerIcon) timerIcon.textContent = "⏳";
+                if (timerText) timerText.textContent = "QR Scanner Valid For: ";
             }
         }
 
@@ -272,20 +293,30 @@
     // Refresh / Renew Scanner for 10 minutes
     function renewQrScanner(userData) {
         const newExpiresAt = Date.now() + QR_EXPIRY_MS;
-        const currentData = userData || (function () {
+        let currentData = userData;
+        if (!currentData) {
             try {
                 const s = localStorage.getItem("nbp_active_qr_session");
-                if (s) return JSON.parse(s).userData;
+                if (s) currentData = JSON.parse(s).userData;
             } catch (_) {}
-            return {};
-        })();
+        }
+        if (!currentData) {
+            try {
+                const u = localStorage.getItem("nbp_current_user");
+                if (u) currentData = JSON.parse(u);
+            } catch (_) {}
+        }
 
         const session = {
-            userData: currentData,
+            userData: currentData || {},
             expiresAt: newExpiresAt,
             createdAt: Date.now()
         };
         localStorage.setItem("nbp_active_qr_session", JSON.stringify(session));
+
+        const qrExpiredOverlay = document.getElementById("qrExpiredOverlay");
+        if (qrExpiredOverlay) qrExpiredOverlay.style.display = "none";
+
         startQrTimer(newExpiresAt);
         showMsg("QR Scanner refreshed! 10-minute validity started.", "success");
     }
