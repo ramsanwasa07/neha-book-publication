@@ -556,6 +556,124 @@
     transform: translateY(-1px) !important;
 }
 
+/* ============================================================
+   QR Code Payment Card Styles
+   ============================================================ */
+.qr-payment-box {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 18px 0 20px;
+    box-shadow: 0 8px 24px rgba(18, 40, 76, 0.08);
+    text-align: center;
+}
+
+.qr-payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.qr-badge {
+    background: #1E3A5F;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.qr-amount-display {
+    font-size: 0.92rem;
+    color: #12284C;
+}
+
+.qr-amount-val {
+    font-size: 1.25rem;
+    color: #00b562;
+    margin-left: 4px;
+    font-weight: 800;
+}
+
+.qr-image-wrapper {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto 14px;
+    background: #f8fafc;
+    padding: 8px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.payment-qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.qr-apps-badge {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.upi-app-tags {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.upi-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.upi-tag.gpay {
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+.upi-tag.phonepe {
+    background: #f3e8ff;
+    color: #7e22ce;
+}
+
+.upi-tag.paytm {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.upi-tag.upi {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.qr-alert-instruction {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    text-align: left;
+    margin-top: 14px;
+}
+
 /* Mobile responsive */
 @media (max-width: 480px) {
     .auth-card {

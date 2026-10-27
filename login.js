@@ -28,6 +28,7 @@
     let countdownInterval = null;
     let selectedProjectBadge = "7 Day Project";
     let selectedProjectSalary = "₹25,000 Salary";
+    let selectedProjectFee = "₹499";
 
     // DOM Elements
     const authNotice = document.getElementById("authNotice");
@@ -124,10 +125,20 @@
                 else selectedProjectSalary = "₹25,000 Salary";
             }
 
+            const feeParam = params.get("fee");
+            if (feeParam) {
+                selectedProjectFee = feeParam.replace(/Registration Fee:?\s*/i, "").trim();
+            } else {
+                if (selectedProjectBadge.includes("10")) selectedProjectFee = "₹750";
+                else if (selectedProjectBadge.includes("12")) selectedProjectFee = "₹1199";
+                else if (selectedProjectBadge.includes("15")) selectedProjectFee = "₹1499";
+                else selectedProjectFee = "₹499";
+            }
+
             if (selectedProjectDisplay && projectNameText && projectSalaryText) {
                 selectedProjectDisplay.style.display = "block";
                 projectNameText.textContent = selectedProjectBadge;
-                projectSalaryText.textContent = selectedProjectSalary;
+                projectSalaryText.textContent = selectedProjectSalary + " • Fee: " + selectedProjectFee;
             }
         }
     }
@@ -230,23 +241,30 @@
             localStorage.setItem("nbp_candidate_applications", JSON.stringify(allApps));
         } catch (_) {}
 
-        // Populate Summary Card
+        // Populate Summary Card & QR Box
         if (summaryName) summaryName.textContent = userData.name || "Candidate";
         if (summaryPhone) summaryPhone.textContent = "+91 " + formatPhone(userData.phone);
         if (summaryProject) summaryProject.textContent = userData.project || selectedProjectBadge;
         if (summarySalary) summarySalary.textContent = userData.salary || selectedProjectSalary;
 
-        // Setup WhatsApp Material Dispatch Link
+        const feeVal = userData.fee || selectedProjectFee || "₹499";
+        const qrFeeAmount = document.getElementById("qrFeeAmount");
+        const summaryFee = document.getElementById("summaryFee");
+        if (qrFeeAmount) qrFeeAmount.textContent = feeVal;
+        if (summaryFee) summaryFee.textContent = feeVal;
+
+        // Setup WhatsApp Material Dispatch Link with Payment Details
         if (btnWhatsAppDispatch) {
             const dispatchMessage =
                 "Hello Neha Book Publication,\n\n" +
-                "I have verified my mobile number and registered for the handwriting job.\n\n" +
+                "I have registered for the handwriting job and I am sending the registration fee payment screenshot.\n\n" +
                 "👤 Name: " + (userData.name || "") + "\n" +
                 "📱 Mobile: +91 " + (userData.phone || "") + "\n" +
                 "📋 Project: " + (userData.project || selectedProjectBadge) + "\n" +
                 "💰 Salary: " + (userData.salary || selectedProjectSalary) + "\n" +
-                (userData.city ? "📍 City: " + userData.city + "\n" : "") +
-                "\nPlease dispatch my handwriting book material and guide me on the next step.";
+                "💳 Registration Fee: " + feeVal + "\n" +
+                (userData.city ? "📍 Delivery City: " + userData.city + "\n" : "") +
+                "\nPlease verify my payment and dispatch my handwriting project material.";
 
             const waLink = "https://wa.me/" + officialWaNumber + "?text=" + encodeURIComponent(dispatchMessage);
             btnWhatsAppDispatch.setAttribute("href", waLink);
@@ -340,6 +358,7 @@
                         // User already registered name, update project & complete
                         existingUser.project = selectedProjectBadge;
                         existingUser.salary = selectedProjectSalary;
+                        existingUser.fee = selectedProjectFee;
                         finalizeApplication(existingUser);
                     } else {
                         // Ask for candidate name
@@ -380,6 +399,7 @@
                     referral: ref,
                     project: selectedProjectBadge,
                     salary: selectedProjectSalary,
+                    fee: selectedProjectFee,
                     applied_at: new Date().toLocaleString()
                 };
 

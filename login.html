@@ -165,13 +165,51 @@
                 <!-- ==============================================
                      STEP 4: Application Submitted / You're in!
                      ============================================== -->
+                <!-- ==============================================
+                     STEP 4: Application Submitted & QR Code Payment
+                     ============================================== -->
                 <section id="stepDone" class="auth-step" style="display: none;">
                     <div class="auth-success-box">
                         <div class="success-icon-badge">✓</div>
-                        <h1 class="auth-title">You're in! 🎉</h1>
-                        <p class="auth-sub">Your project registration is confirmed with Neha Book Publication.</p>
+                        <h1 class="auth-title">Application Confirmed! 🎉</h1>
+                        <p class="auth-sub">Please scan the QR code to complete your security deposit / registration fee.</p>
 
-                        <!-- Summary Card -->
+                        <!-- QR Code Container -->
+                        <div class="qr-payment-box">
+                            <div class="qr-payment-header">
+                                <span class="qr-badge">Official Payment QR</span>
+                                <div class="qr-amount-display">
+                                    <span class="qr-amount-label">Registration Fee:</span>
+                                    <strong class="qr-amount-val" id="qrFeeAmount">₹499</strong>
+                                </div>
+                            </div>
+
+                            <div class="qr-image-wrapper">
+                                <img src="./payment-qr.jpg" alt="Neha Book Publication Payment QR Code" class="payment-qr-image" id="paymentQrImg">
+                            </div>
+
+                            <div class="qr-apps-badge">
+                                <span>Scan &amp; Pay with any UPI App</span>
+                                <div class="upi-app-tags">
+                                    <span class="upi-tag gpay">Google Pay</span>
+                                    <span class="upi-tag phonepe">PhonePe</span>
+                                    <span class="upi-tag paytm">Paytm</span>
+                                    <span class="upi-tag upi">BHIM UPI</span>
+                                </div>
+                            </div>
+
+                            <div class="qr-alert-instruction">
+                                <strong>📸 Important:</strong> Payment complete hone ke baad screenshot niche diye gaye WhatsApp button par bhejein taaki aapka handwriting writing project material (notebook &amp; pen) parcel turant dispatch ho sake.
+                            </div>
+                        </div>
+
+                        <!-- Direct WhatsApp Action Button -->
+                        <a href="#" id="btnWhatsAppDispatch" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-chat">
+                            <span>💬</span>
+                            <span>Send Payment Screenshot on WhatsApp</span>
+                        </a>
+
+                        <!-- Candidate Application Summary Card -->
                         <div class="application-summary-card">
                             <div class="summary-row">
                                 <span class="summary-label">Applicant Name:</span>
@@ -190,15 +228,14 @@
                                 <span class="summary-val" id="summarySalary" style="color: #00b562;">₹25,000</span>
                             </div>
                             <div class="summary-row">
+                                <span class="summary-label">Registration Fee:</span>
+                                <span class="summary-val" id="summaryFee" style="color: #1E3A5F; font-weight: 700;">₹499</span>
+                            </div>
+                            <div class="summary-row">
                                 <span class="summary-label">Application Status:</span>
-                                <span class="summary-val" style="color: #0284c7;">✓ Verified Candidate</span>
+                                <span class="summary-val" style="color: #0284c7;">✓ Registered — Awaiting Screenshot</span>
                             </div>
                         </div>
-
-                        <a href="#" id="btnWhatsAppDispatch" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-chat">
-                            <span>💬</span>
-                            <span>Chat on WhatsApp for Material Dispatch</span>
-                        </a>
 
                         <a href="./index.html" class="btn-home-outline">
                             ← Return to Website

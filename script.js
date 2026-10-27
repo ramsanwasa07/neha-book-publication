@@ -246,7 +246,8 @@ function renderProjectPlans(plans, waDigits) {
         const badgeSlug = encodeURIComponent((plan.badge || "project").toLowerCase().replace(/\s+/g, "-"));
         const badgeText = encodeURIComponent(plan.badge || "");
         const salaryText = encodeURIComponent(plan.salary_amount || "");
-        const applyLink = "./login.html?project=" + badgeSlug + "&badge=" + badgeText + "&salary=" + salaryText;
+        const feeText = encodeURIComponent(plan.registration_fee || "");
+        const applyLink = "./login.html?project=" + badgeSlug + "&badge=" + badgeText + "&salary=" + salaryText + "&fee=" + feeText;
 
         return (
             '<div class="project-card' + featuredClass + '">' +
